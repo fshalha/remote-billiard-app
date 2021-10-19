@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:remote_billiard/loginScreen.dart';
+import 'package:remote_billiard/bluetooth_conn/bluetoothConn.dart';
+import 'package:remote_billiard/bluetooth_conn/bluetoothConn.dart';
 
 
-class HomePage extends StatelessWidget {
-  static const String id = 'HomePage';
+class bconnectdevice extends StatelessWidget {
+  static const String id = 'bconnectdevice';
   @override
   Widget build(BuildContext context) {
    
@@ -23,7 +24,7 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
 
           children: <Widget>[
-             
+           
             Text(
               "Remote Billiard",
               style:GoogleFonts.lobster(
@@ -49,7 +50,7 @@ class HomePage extends StatelessWidget {
                style:GoogleFonts.dancingScript(
               textStyle:TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize:20,
+                fontSize: 15,
                 letterSpacing: 4,
                 color: Colors.blue[200],
               ),
@@ -61,26 +62,19 @@ class HomePage extends StatelessWidget {
               // ignore: deprecated_member_use
               
               child: FlatButton(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
-                shape: RoundedRectangleBorder(side: BorderSide(
-            color: Colors.amber[700],
-            width:3,
-            style: BorderStyle.solid
-          ), borderRadius: BorderRadius.circular(20)),
-                color:Colors.amberAccent[200],
                 child: Text(
-                  'PLAY',
+                  'CONNECT DEVICE',
                   style:GoogleFonts.raleway(
-              textStyle: TextStyle(fontSize: 19.0),
+              textStyle: TextStyle(fontSize: 17.0),
                fontWeight: FontWeight.bold,
                 letterSpacing: 3,
         
                 ),),
-               
+                color: Colors.blue[200],
                 textColor: Colors.blue[900],
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginScreen()));
+                      MaterialPageRoute(builder: (context) => BluetoothPage()));
                 },
               ),
             ),

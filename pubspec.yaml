@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -27,6 +27,9 @@ dependencies:
   http: ^0.12.1
   web_socket_channel: "^1.0.8"
   logger: ^1.1.0
+  email_validator: ^2.0.1
+  google_sign_in: ^5.1.0
+  flutter_bluetooth_serial: ^0.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

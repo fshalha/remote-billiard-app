@@ -1,47 +1,45 @@
-import 'dart:convert';
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'ListViewModel.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'backEnd_conn/game_communication.dart';
 import 'customcard.dart';
 
 class FindPlayer extends StatefulWidget {
   static const String id = 'FindPlayer';
-@override
-_FindPlayerState createState()=>_FindPlayerState();
+  @override
+  _FindPlayerState createState() => _FindPlayerState();
 }
+
 class _FindPlayerState extends State<FindPlayer> {
- 
-    List allUsers=[];
-Future <List<dynamic>> fetchdata() async {
- Uri BASE_URL =Uri.parse('http://localhost:3000/getallUsers/') ;
- 
-    var res = await http.get(BASE_URL);
-    
-     if (res.statusCode == 200) {
-   
-      var data = json.decode(res.body)['users'];
-      print(data);
-      setState(() { 
-       for(var ma in data){
-         var m= (ma["name"]);
+  List allUsers = [];
+
+  
+  fetchdata(message){
+    print(message);
+    switch (message["action"]) {
+      case 'returnAllUsers':
+      
+         var jsonobj = message['data'];
+         //print(jsonobj);
+         setState(() {
+            for (var ma in jsonobj) {
+          var m = (ma["name"]);
           allUsers.add(m);
-      // }
-     // print(json.decode(res.body)['users']);
-    
-       
-      }
-     });
-          print(allUsers);
+           }
+          // print(allUsers);
+         }); 
+         break;
   }
-  return allUsers;   
-}
+  }
   @override
   void initState() {
-super.initState();
-   
-   fetchdata();
-
+    super.initState();
+   game.addListener(fetchdata);
+  
+  }
+ @override
+  void dispose() {
+    game.removeListener(fetchdata);
+    super.dispose();
   }
 
   @override
@@ -51,31 +49,33 @@ super.initState();
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Colors.blue, Colors.black])),
+             colors: [Colors.grey[900],Colors.blue[900]])),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: AppBar( 
+        appBar: AppBar(
           backgroundColor: Colors.transparent,
           elevation: 0.0,
           centerTitle: true,
+          
           title: Text(
-            "Find Players",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-              fontFamily: "Raleway",
-              letterSpacing: 5,
-              color: Colors.white70,
-            ),
+            "Registered Players",
+             style:GoogleFonts.openSans(
+                    textStyle:TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Colors.blue[200],
+                    letterSpacing: 5,
+                    
+                  ),
+                  ),
           ),
-          actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
+         /* actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],*/
         ),
-        body:ListView.builder(
-          itemCount:allUsers.length,
-          itemBuilder:(context,index){
-            return customcard(name:allUsers[index]);
-            
-          } ,
+        body: ListView.builder(
+          itemCount: allUsers.length,
+          itemBuilder: (context, index) {
+            return customcard(name: allUsers[index]);
+          },
         ),
       ),
     );

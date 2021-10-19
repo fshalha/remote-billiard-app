@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:remote_billiard/backEnd_conn/game_communication.dart';
 class ChoosePocket extends StatefulWidget {
   static const String id = 'ChoosePocket';
+   const ChoosePocket ({
+    Key key,
+   this.opponentId,
+  }) : super(key: key);
 
-  @override
+  final String opponentId;
+  
+@override
   _ChoosePocketState createState() => _ChoosePocketState();
 }
 class _ChoosePocketState  extends State<ChoosePocket> {
+ 
   @override
   Widget build(BuildContext context) {
-    
- Size size = MediaQuery.of(context).size;
     return Container(
     alignment: Alignment.center,
      decoration: BoxDecoration(
@@ -50,7 +56,9 @@ class _ChoosePocketState  extends State<ChoosePocket> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                  _onchoosepocket(widget.opponentId,"1");
+              },
               color: Colors.blue,
               textColor: Colors.white,
               child: Text('1'
@@ -60,7 +68,9 @@ class _ChoosePocketState  extends State<ChoosePocket> {
             ),
               
                 MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                  _onchoosepocket(widget.opponentId,"2");
+              },
               color: Colors.blue,
               textColor: Colors.white,
               child: Text('2'
@@ -78,7 +88,9 @@ class _ChoosePocketState  extends State<ChoosePocket> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                  _onchoosepocket(widget.opponentId,"3");
+              },
               color: Colors.blue,
               textColor: Colors.white,
               child: Text('3'
@@ -88,7 +100,9 @@ class _ChoosePocketState  extends State<ChoosePocket> {
             ),
               
                 MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                  _onchoosepocket(widget.opponentId,"4");
+              },
               color: Colors.blue,
               textColor: Colors.white,
               child: Text('4'
@@ -107,7 +121,9 @@ class _ChoosePocketState  extends State<ChoosePocket> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                  _onchoosepocket(widget.opponentId,"5");
+              },
               color: Colors.blue,
               textColor: Colors.white,
               child: Text('5'
@@ -117,7 +133,9 @@ class _ChoosePocketState  extends State<ChoosePocket> {
             ),
               
                 MaterialButton(
-              onPressed: () {},
+              onPressed: () {
+                  _onchoosepocket(widget.opponentId,"6");
+              },
               color: Colors.blue,
               textColor: Colors.white,
               child: Text('6'
@@ -137,5 +155,12 @@ class _ChoosePocketState  extends State<ChoosePocket> {
                  
           )),
     );
+    
+  
+  }
+   _onchoosepocket(String opponentId, String pocket) {
+    // We need to send the opponentId to initiate a new game
+    game.send('choosepocket', "$opponentId;$pocket");
+
   }
 }

@@ -1,10 +1,13 @@
 // import 'package:chessMATE_app/screens/gameScreen.dart';
-import 'package:chessMATE_app/confirm_new_game/confirm_new_game.dart';
-import 'package:flutter/material.dart';
-import 'package:chessMATE_app/backEnd_conn/game_communication.dart';
-import 'package:chessMATE_app/chessGame/buildGame.dart';
 
-const String profile_Img = 'assets/player.png';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:remote_billiard/Invite_player/confirm_new_game.dart';
+import 'package:remote_billiard/backEnd_conn/game_communication.dart';
+
+import '../PlayerPage.dart';
+
+const String profile_Img = 'assets/user.jpg';
 
 class Player {
   final String profileImg;
@@ -61,70 +64,73 @@ class _PlayerDataBodyState extends State<PlayerDataBody> {
       ///
       case 'new_game':
         // split message data
-        var data = message["data"].split(";"); 
-        Navigator.push(context, new MaterialPageRoute(
-          builder: (BuildContext context)
-                      => new ConfirmNewGame(
-                            opponentName: data[0], // Name of the opponent
-                            opponentId: data[1],
-                            willStream: data[2],
-                           // availability: data[3],
-                        ),
-        ));
+        var data = message["data"].split(";");
+        Navigator.push(
+            context,
+            new MaterialPageRoute(
+              builder: (BuildContext context) => new ConfirmNewGame(
+                opponentName: data[0], // Name of the opponent
+                opponentId: data[1],
+                willStream: data[2],
+                // availability: data[3],
+              ),
+            ));
         break;
     }
   }
 
-
   // ignore: non_constant_identifier_names
   Widget personDetailCard(Player, String id, bool availability) {
+    var playername=Player.username;
     return Padding(
       padding: const EdgeInsets.all(4),
       child: InkWell(
         splashColor: Colors.red,
+      
         onTap: () {
-          if(availability == true){
+          if (availability == true) {
             _onPlayGame(Player.username, id);
-          }else{
+          } else {
             print(availability);
             // player is not available
             // display a message
-            showDialog(context: context,
-              builder: (BuildContext context){
-              return AlertDialog(
-                title: new Text("Selected Player is currently Unavailable",
-                  style: TextStyle(
-                  color: Colors.white,
-                  )
-                ),
-                content: new Text("Please select another Player",
-                  style: TextStyle(
-                  color: Colors.white
-                  ),
-                ),
-                backgroundColor: Colors.lightBlue[900],
-                actions: <Widget> [
-                  new FlatButton(onPressed: (){
-                    // remove pop up message
-                    Navigator.of(context).pop();
-                    },
-                    child: new Text("OK",
-                      style: TextStyle(color: Colors.white,
-                      fontSize: 15,
-                      ),
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: new Text("$playername is currently unavailable",
+                        style: TextStyle(
+                          color: Colors.grey[100],
+                        )),
+                    content: new Text(
+                      "Please select another Player",
+                      style: TextStyle(color: Colors.grey[100]),
                     ),
-                  ),
-                ],
-              );
-            });
-
+                    backgroundColor: Colors.indigo[900],
+                    actions: <Widget>[
+                      new FlatButton(
+                        onPressed: () {
+                          // remove pop up message
+                          Navigator.of(context).pop();
+                        },
+                        child: new Text(
+                          "OK",
+                          style: TextStyle(
+                            color: Colors.grey[100],
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                });
           }
-          
         },
         child: Card(
+          color: Colors.blue[300],
           elevation: 20,
           shape: RoundedRectangleBorder(
-              side: new BorderSide(color: Colors.blue, width: 3.0),
+              side: new BorderSide(color: Colors.white, width: 3.0),
               borderRadius: BorderRadius.circular(0)),
           child: Padding(
             padding: const EdgeInsets.all(10),
@@ -148,7 +154,7 @@ class _PlayerDataBodyState extends State<PlayerDataBody> {
                     Text(
                       Player.username,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.indigo[900],
                         fontSize: 20,
                         fontFamily: "Acme",
                         letterSpacing: 2,
@@ -158,111 +164,134 @@ class _PlayerDataBodyState extends State<PlayerDataBody> {
                   ],
                 ),
               ],
-            ), 
+            ),
           ),
         ),
       ),
     );
   }
 
-  _onPlayGame(String opponentName, String opponentId){
+  _onPlayGame(String opponentName, String opponentId) {
     // First ask the favor to the stream the game
-    showDialog(context: context,
-        builder: (BuildContext context){
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
           return AlertDialog(
-            title: new Text("Stream the Game",
-            style: TextStyle(
-              color: Colors.white,
-              )
+            title: new Text("Player Invitation",
+                style: TextStyle(
+                  color: Colors.grey[100],
+                )),
+            content: new Text(
+              "Do you want to send an invitation to $opponentName ?",
+              style: TextStyle(color: Colors.grey[100]),
             ),
-            content: new Text("Do You Like to Stream the game ?",
-            style: TextStyle(
-              color: Colors.white
+            backgroundColor: Colors.indigo[900],
+            actions: <Widget>[
+              new FlatButton(
+                onPressed: () {
+                  // remove pop up message
+                  Navigator.of(context).pop();
+               
+                },
+                child: new Text(
+                  "NO",
+                  style: TextStyle(
+                    color: Colors.grey[100],
+                    fontSize: 15,
+                  ),
+                ),
               ),
-            ),
-            backgroundColor: Colors.lightBlue[900],
-            actions: <Widget> [
-              new FlatButton(onPressed: (){
-                // remove pop up message
-                Navigator.of(context).pop();
-                // send to the game
-                _onStartGame(opponentName,opponentId, "No");
-              },
-               child: new Text("NO",
-               style: TextStyle(color: Colors.white,
-               fontSize: 15,
-               ),
-               ),
-               ),
-               new FlatButton(onPressed: (){
-                 // remove pop up message
+              new FlatButton(
+                onPressed: () {
+                  // remove pop up message
                   Navigator.of(context).pop();
                   // send to the server
-                  game.send("request_to_stream", opponentId);
                   // start the game
-                  _onStartGame(opponentName,opponentId, "Yes");
+                  _onStartGame(opponentName, opponentId, "Yes");
                 },
-               child: new Text("YES",
-               style: TextStyle(color: Colors.white,
-               fontSize: 15,
-               ),
-               ),
-               ),
+                child: new Text(
+                  "YES",
+                  style: TextStyle(
+                    color: Colors.grey[100],
+                    fontSize: 15,
+                  ),
+                ),
+              ),
             ],
           );
         });
   }
 
-  _onStartGame(String opponentName,String opponentId, String stream){
+  _onStartGame(String opponentName, String opponentId, String stream) {
     // We need to send the opponentId to initiate a new game
     game.send('new_game', "$opponentId;$opponentName;$stream");
-	
-    Navigator.push(context, new MaterialPageRoute(
-      builder: (BuildContext context) 
-                  => new PlayGame(
-                      opponentName: opponentName, 
-                      character: 'w',
-                      opponentId: opponentId,
-                    ),
-    ));
-  }
 
+    Navigator.push(
+        context,
+        new MaterialPageRoute(
+          builder: (BuildContext context) => new PlayerPage(
+            opponentName: opponentName,
+            character: '1',
+            opponentId: opponentId,
+          ),
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return SingleChildScrollView(
       child: Container(
+      
         child: Padding(
           padding: const EdgeInsets.fromLTRB(10, 50, 10, 10),
           child: Column(
             children: <Widget>[
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset(
-                    "assets/logo.png",
-                    height: size.height * 0.2,
-                  ),
+                 
                   SizedBox(
                     height: size.height * 0.05,
                   ),
-                  Text(
-                    "FIND PLAYERS",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                      color: Colors.white,
-                      fontFamily: "Acme",
-                      letterSpacing: 7,
-                    ),
+                    Text(
+              "Remote Billiard",
+              style:GoogleFonts.lobster(
+              textStyle:TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 35,
+                letterSpacing: 5,
+                color: Colors.blue[200],
+              ),
+              ),
+            ),
+            Container(
+                margin: EdgeInsets.all(25),
+                child: Image.asset(
+                  "./assets/logo.png",
+                  height: 75,
+                  width: 125,
+                )),
+                Text(
+            "Find Players",
+             style:GoogleFonts.openSans(
+                    textStyle:TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: Colors.blue[200],
+                    letterSpacing: 5,
+                    
                   ),
+                  ),),
                 ],
               ),
               Column(
                   children: playersList.map((playerInfo) {
-                    Player player = new Player(profileImg: profile_Img,username: playerInfo["name"]);
-                return personDetailCard(player, playerInfo["id"],playerInfo["availability"]);
+                Player player = new Player(
+                    profileImg: profile_Img, username: playerInfo["name"]);
+                return personDetailCard(
+                    player, playerInfo["id"], playerInfo["availability"]);
               }).toList()),
             ],
           ),
