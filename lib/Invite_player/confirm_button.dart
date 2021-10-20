@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ConfirmButton extends StatelessWidget {
   final String text;
@@ -21,7 +22,8 @@ class ConfirmButton extends StatelessWidget {
       width: size.width * 0.4,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(20),
-        child: FlatButton(
+        
+        /*child: FlatButton(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           color: color,
           onPressed: press,
@@ -35,7 +37,26 @@ class ConfirmButton extends StatelessWidget {
               letterSpacing: 5,
             ),
           ),
-        ),
+        ),*/
+          child: FlatButton(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(20)),
+                color:Colors.amberAccent[200],
+                child: Text(text,
+                  style:GoogleFonts.raleway(
+              textStyle: TextStyle(fontSize: 19.0),
+               fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+        
+                ),),
+               
+                textColor: Colors.blue[900],
+                onPressed: press,
+              ),
       ),
     );
   }

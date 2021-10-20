@@ -97,7 +97,7 @@ class _ConfirmNewGameState extends State<ConfirmNewGame> {
                style:GoogleFonts.dancingScript(
               textStyle:TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 20,
                 letterSpacing: 4,
                 color: Colors.blue[200],
                 decoration: TextDecoration.none,

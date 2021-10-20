@@ -18,11 +18,11 @@ class _ChoosePocketState  extends State<ChoosePocket> {
   Widget build(BuildContext context) {
     return Container(
     alignment: Alignment.center,
-     decoration: BoxDecoration(
+    decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Colors.blue, Colors.black])),
+              colors: [Colors.grey[900],Colors.blue[900]])),
       child: Scaffold(
           // By defaut, Scaffold background is white
           // Set its value to transparent
@@ -55,29 +55,41 @@ class _ChoosePocketState  extends State<ChoosePocket> {
               child:Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                           Material(  //Wrap with Material
+      shape: CircleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ),),
+                  child:
                 MaterialButton(
               onPressed: () {
                   _onchoosepocket(widget.opponentId,"1");
               },
-              color: Colors.blue,
-              textColor: Colors.white,
+              color:Colors.amberAccent[200],
+                textColor:Colors.blue[900],
               child: Text('1'
               ),
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(30),
             shape: CircleBorder(),
-            ),
-              
-                MaterialButton(
+            ),),
+                Material(  //Wrap with Material
+      shape: CircleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ),),
+                  child:MaterialButton(
               onPressed: () {
                   _onchoosepocket(widget.opponentId,"2");
               },
-              color: Colors.blue,
-              textColor: Colors.white,
+            color:Colors.amberAccent[200],
+                textColor:Colors.blue[900],
               child: Text('2'
               ),
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(30),
             shape: CircleBorder(),
-            ),
+            ),),
               
               ],
             )
@@ -87,29 +99,42 @@ class _ChoosePocketState  extends State<ChoosePocket> {
               child:Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                Material(  //Wrap with Material
+      shape: CircleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ),),
+                  child:
                 MaterialButton(
               onPressed: () {
                   _onchoosepocket(widget.opponentId,"3");
               },
-              color: Colors.blue,
-              textColor: Colors.white,
+            color:Colors.amberAccent[200],
+                textColor:Colors.blue[900],
               child: Text('3'
               ),
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(30),
             shape: CircleBorder(),
-            ),
-              
+            ),),
+               Material(  //Wrap with Material
+      shape: CircleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ),),
+                  child:
                 MaterialButton(
               onPressed: () {
                   _onchoosepocket(widget.opponentId,"4");
               },
-              color: Colors.blue,
-              textColor: Colors.white,
+           color:Colors.amberAccent[200],
+                textColor:Colors.blue[900],
               child: Text('4'
               ),
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(30),
             shape: CircleBorder(),
-            ),
+            ),),
               
               ],
             )
@@ -120,29 +145,42 @@ class _ChoosePocketState  extends State<ChoosePocket> {
               child:Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
+                 Material(  //Wrap with Material
+      shape: CircleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ),),
+                  child:
                 MaterialButton(
               onPressed: () {
                   _onchoosepocket(widget.opponentId,"5");
               },
-              color: Colors.blue,
-              textColor: Colors.white,
+        color:Colors.amberAccent[200],
+                textColor:Colors.blue[900],
               child: Text('5'
               ),
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(30),
             shape: CircleBorder(),
-            ),
-              
+            ),),
+               Material(  //Wrap with Material
+      shape: CircleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ),),
+                  child:
                 MaterialButton(
               onPressed: () {
                   _onchoosepocket(widget.opponentId,"6");
               },
-              color: Colors.blue,
-              textColor: Colors.white,
+           color:Colors.amberAccent[200],
+                textColor:Colors.blue[900],
               child: Text('6'
               ),
-            padding: EdgeInsets.all(16),
+            padding: EdgeInsets.all(30),
             shape: CircleBorder(),
-            ),
+            ),),
               
               ],
             )

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart'; // For using PlatformException
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:remote_billiard/SelectOptions.dart';
 // import 'package:scoped_model/scoped_model.dart';
 //import 'package:chessMATE_app/screens/option_screen.dart';
@@ -137,11 +138,13 @@ class _BluetoothPageState extends State<BluetoothPage> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       home: Scaffold(
+        backgroundColor: Colors.blue[200],
         key: _scaffoldKey,
         appBar: AppBar(
-          title: Text("Flutter Bluetooth"),
-          backgroundColor: Colors.deepPurple,
+          title: Text("Connect device"),
+          backgroundColor: Colors.blue[900],
           actions: <Widget>[
             FlatButton.icon(
               icon: Icon(
@@ -157,7 +160,7 @@ class _BluetoothPageState extends State<BluetoothPage> {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30),
               ),
-              splashColor: Colors.deepPurple,
+              splashColor: Colors.blue[900],
               onPressed: () async {
                 // So, that when new devices are paired
                 // while the app is running, user can refresh
@@ -190,8 +193,9 @@ class _BluetoothPageState extends State<BluetoothPage> {
                       child: Text(
                         'Enable Bluetooth',
                         style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16,
+                          color: Colors.blue[900],
+                           fontWeight: FontWeight.bold,
+                          fontSize: 20,
                         ),
                       ),
                     ),
@@ -230,8 +234,8 @@ class _BluetoothPageState extends State<BluetoothPage> {
                       Padding(
                         padding: const EdgeInsets.only(top: 10),
                         child: Text(
-                          "PAIRED DEVICES",
-                          style: TextStyle(fontSize: 24, color: Colors.blue),
+                          "Paired Devices",
+                          style: TextStyle(fontSize: 24, color: Colors.indigo[900], fontWeight: FontWeight.bold,),
                           textAlign: TextAlign.center,
                         ),
                       ),
@@ -243,7 +247,10 @@ class _BluetoothPageState extends State<BluetoothPage> {
                             Text(
                               'Device:',
                               style: TextStyle(
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
+                                color: Colors.blue[900],
+                              
                               ),
                             ),
                             DropdownButton(
@@ -303,13 +310,28 @@ class _BluetoothPageState extends State<BluetoothPage> {
                         ),
                         SizedBox(height: 15),
                         RaisedButton(
+                          color:Colors.amberAccent[200] ,
                           elevation: 2,
-                          child: Text("Next"),
+                          child: Text(
+                            'NEXT',
+                  style:GoogleFonts.raleway(
+              textStyle: TextStyle(fontSize: 19.0),
+               fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+        
+                ),),
+                   textColor: Colors.blue[900],
+                          shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(20)),
                           onPressed: () {
                             // FlutterBluetoothSerial.instance.openSettings();
                             Navigator.pushNamed(context, SelectOptions.id);
                           },
                         ),
+                        
                       ],
                     ),
                   ),

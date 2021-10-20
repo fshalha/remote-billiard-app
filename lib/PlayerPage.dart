@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_fonts/google_fonts.dart';
 //import 'package:google_fonts/google_fonts.dart';
 import 'package:yoyo_player/yoyo_player.dart';
 import 'ChoosePocket.dart';
@@ -155,11 +156,11 @@ class _PlayerPageState extends State<PlayerPage> {
       return Container(
        
       
-      decoration: BoxDecoration(
-            gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [Colors.blue, Colors.black])),
+     decoration: BoxDecoration(
+          gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+             colors: [Colors.grey[900],Colors.blue[900]])),
         child: Scaffold(
           
             // By defaut, Scaffold background is white
@@ -178,8 +179,8 @@ class _PlayerPageState extends State<PlayerPage> {
               : Container(),
               
         ),
-       /* Container(
-          floatingActionButton: FloatingActionButton(
+        Container(
+     child: FloatingActionButton(
           onPressed: () {
             setState(() {
               _controller.value.isPlaying
@@ -191,7 +192,7 @@ class _PlayerPageState extends State<PlayerPage> {
             _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
           ),
         ),
-        ),*/
+        ),
              /* Expanded(
               flex: 3,
               child: YoYoPlayer(
@@ -202,7 +203,7 @@ class _PlayerPageState extends State<PlayerPage> {
               ),
             ),*/
             Container( 
-               margin: EdgeInsets.all(25),
+             
                child:Text(widget.data ?? "",
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -213,17 +214,31 @@ class _PlayerPageState extends State<PlayerPage> {
                   ),) , 
             ),
               Container(  
-                margin: EdgeInsets.all(25),  
+          
                 // ignore: deprecated_member_use
-                child: FlatButton(  
-                  child: Text('Call For Foul', style: TextStyle(fontSize: 17.0),),  
-                  color: Colors.blue[200],  
-                  textColor: Colors.black,  
-                  onPressed: () {
-                    game.send("CallForFoul",widget.opponentId);
-
-                  },  
-                ),  
+                child:FlatButton(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+                shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(20)),
+                color:Colors.amberAccent[200],
+                child: Text(
+                'CALL FOR FOUL',
+                  style:GoogleFonts.raleway(
+              textStyle: TextStyle(fontSize: 19.0),
+               fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+        
+                ),),
+               
+                textColor: Colors.blue[900],
+                onPressed: () {
+                   game.send("CallForFoul",widget.opponentId);
+                },
+              ),
+               
               ),  
              
               Container(
@@ -231,7 +246,13 @@ class _PlayerPageState extends State<PlayerPage> {
                 child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  MaterialButton(
+                   Material(  //Wrap with Material
+      shape: CircleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ),),
+                  child:MaterialButton(
                 onPressed: () {
                      
                     Navigator.push(context,
@@ -239,23 +260,26 @@ class _PlayerPageState extends State<PlayerPage> {
                           opponentId: widget.opponentId, 
                       )));
                 },
-                color: Colors.blue,
-                textColor: Colors.white,
-                child: Text('Choose\nPocket'
+                color:Colors.amberAccent[200],
+                textColor:Colors.blue[900],
+                child: Text('CHOOSE\nPOCKET'
                 ),
               padding: EdgeInsets.all(25),
               shape: CircleBorder(),
-              ),
+              ),),
                 
                 Ink(
                   decoration: const ShapeDecoration(
-                    color: Colors.blue,
+                    color: Colors.amberAccent,
                       shape: CircleBorder(),
+                      
                   ),
                 child: IconButton(
-                  icon: Icon(Icons.chat),
-                  iconSize: 48,
-                  color: Colors.white,
+                  icon: Icon(Icons.chat_outlined),
+               
+               
+                  iconSize: 70,
+                  color: Colors.blue[900],
                   onPressed: () {
                     game.send("Chat",widget.opponentId);
                     Navigator.push(context,
@@ -271,22 +295,27 @@ class _PlayerPageState extends State<PlayerPage> {
               )
               ),
                 Container(
-                margin: EdgeInsets.all(15),  
+             
                 child:Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   Container(
-                  margin: EdgeInsets.all(25),
+              
                   child: FlatButton(
-                    minWidth: 200.0,
-                    height: 100.0,
+                 
+                    minWidth: 190.0,
+                    height: 90.0,
                     child: Text(
                       'TOSS',
                       style: TextStyle(fontSize: 17.0),
                     ),
-                    color: Colors.blue[200],
-                    textColor: Colors.black,
-                    shape: CircleBorder(),
+                    color: Colors.amberAccent[200],
+                    textColor: Colors.blue[900],
+                    shape: CircleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ),),
                     onPressed: () {
                           game.send('toss',widget.opponentId);
                     

@@ -66,22 +66,89 @@ class BodyForgotPass extends StatelessWidget {
               SizedBox(
                 height: size.height * 0.01,
               ),
-              RoudedInputField(
-                hintText: "Email",
-                onChanged: (value) {},
-                icon: Icons.email,
-              ),
-              RoundedPasswordField(
-                onChanged: (value) {},
-                text: "New Password",
-              ),
-              ConfirmPasswordField(
-                onChanged: (value) {},
-                text: "Confirm New Password",
-              ),
-              RoundedButton(
-                text: "RESET",
-                press: () {
+               Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: false,
+           onChanged: (value) {},
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              hintText: "Email",
+              border:
+                  OutlineInputBorder(
+                        borderSide:BorderSide(color: Colors.blue[200], width: 2.0),
+                    borderRadius: BorderRadius.circular(22.0))),
+        ),
+                
+                ),
+                  SizedBox(
+                  height: size.height * 0.03,
+                ),
+              Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: true,
+          onChanged: (value) {},
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              hintText:  "New Password",
+              border:
+                  OutlineInputBorder(
+                  
+                    borderRadius: BorderRadius.circular(22.0),))
+        ),
+        
+                ),
+            
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+              Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: true,
+         onChanged: (value) {
+                  },
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              hintText:"Confirm New Password",
+              border:
+                  OutlineInputBorder(
+                  
+                    borderRadius: BorderRadius.circular(22.0),))
+        ),
+        
+                ),
+            
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+            
+            FlatButton(
+                       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 110),
+                shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(20)),
+                color:Colors.amberAccent[200],
+                  child: Text(
+                  'RESET',
+                  style:GoogleFonts.raleway(
+                textStyle: TextStyle(fontSize: 17.0),
+               fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+                ),),
+              
+                textColor: Colors.blue[900],
+            
+                onPressed: () {
                   Navigator.pushNamed(context, LoginScreen.id);
                 },
               ),

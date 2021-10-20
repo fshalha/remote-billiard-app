@@ -202,8 +202,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ),
                 Container(
-                   margin: EdgeInsets.only(left:40,top:10.0 ),
-                     alignment:Alignment.topLeft,
+                  
+                     alignment:Alignment.center,
                     child: sockets.socketStatus()
                         ? null
                         : Text(
@@ -213,34 +213,63 @@ class _LoginPageState extends State<LoginPage> {
                                 fontSize: 10,
                                 color: Colors.red),
                           )),
-                
-                Text(
+                  Container(
+                          margin: EdgeInsets.only(left:20),
+                       alignment:Alignment.center,
+                child: Text(
                   userError,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 12,
+                    fontSize: 10,
                     fontFamily: "Acme",
                     letterSpacing: 5,
                     color: Colors.red,
                   ),
-                ),
-                
-                RoudedInputField(
-                  
-                  hintText: "Email Address",
-                  onChanged: (value) {
+                ),),
+                Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: false,
+          onChanged: (value) {
                     _userName = value;
                   },
-                  icon: Icons.email,
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              hintText: "Email",
+              border:
+                  OutlineInputBorder(
+                        borderSide:BorderSide(color: Colors.blue[200], width: 2.0),
+                    borderRadius: BorderRadius.circular(22.0))),
+        ),
+                
                 ),
-                RoundedPasswordField(
-                  onChanged: (value) {
+                  SizedBox(
+                  height: size.height * 0.03,
+                ),
+                 Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: true,
+         onChanged: (value) {
                     _password = value;
                   },
-                  text: "Password",
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              hintText: "password",
+              border:
+                  OutlineInputBorder(
+                  
+                    borderRadius: BorderRadius.circular(22.0),))
+        ),
+        
                 ),
+            
                 SizedBox(
-                  height: size.height * 0.0,
+                  height: size.height * 0.03,
                 ),
                 // ignore: deprecated_member_use
                 FlatButton(
@@ -310,7 +339,7 @@ class _LoginPageState extends State<LoginPage> {
                       : null,
                 ),
                 Text(
-                  'Or',
+                  'Or login with',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18.0,
@@ -336,19 +365,19 @@ class _LoginPageState extends State<LoginPage> {
                           },
         child: Card(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Row(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
+            child: Wrap(
               children: [
                 Image.asset(
                   "assets/google.png",
-                  height: 12,
-                  width: 10,
+                  height: 40,
+                  width: 40,
                 ),
-                SizedBox(width: 3),
-                Text(
+              
+                /*Text(
                   "Googe Login",
                   style: TextStyle(fontSize: 14, color: Colors.black),
-                ),
+                ),*/
               ],
             ),
           ),
@@ -357,7 +386,7 @@ class _LoginPageState extends State<LoginPage> {
     ),
     Container(
       height: 60,
-      width: MediaQuery.of(context).size.width - 250,
+      width: MediaQuery.of(context).size.width - 270,
       child: InkWell(
         onTap: ()async {
                             try {
@@ -368,19 +397,18 @@ class _LoginPageState extends State<LoginPage> {
                           },
         child: Card(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Row(
+            padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+            child:Wrap(
+              
+               direction: Axis.horizontal, // main axis (rows or columns)
               children: [
-                /*Image.asset(
+                Image.asset(
                   "assets/facebook.png",
-                  height: 20,
-                  width: 12,
-                ),*/
-               // SizedBox(width: 3),
-                Text(
-                  "facebook Login",
-                  style: TextStyle(fontSize: 14, color: Colors.black),
+                  height: 30,
+                  width: 25,
                 ),
+               // SizedBox(width: 3),
+                
               ],
             ),
           ),

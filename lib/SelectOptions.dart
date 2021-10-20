@@ -49,7 +49,7 @@ class SelectOptions extends StatelessWidget {
                style:GoogleFonts.dancingScript(
               textStyle:TextStyle(
                 fontWeight: FontWeight.bold,
-                fontSize: 15,
+                fontSize: 20,
                 letterSpacing: 4,
                 color: Colors.blue[200],
               ),
@@ -60,40 +60,63 @@ class SelectOptions extends StatelessWidget {
                   margin: EdgeInsets.all(25),
                   // ignore: deprecated_member_use
                   child: FlatButton(
-                    child: Text(
-                      'Registered Players',
-                      style: TextStyle(fontSize: 17.0),
-                    ),
-                    color: Colors.blue[200],
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(20)),
+                color:Colors.amberAccent[200],
+                child: Text(
+                  'Registered Players',
+                  style:GoogleFonts.raleway(
+              textStyle: TextStyle(fontSize: 19.0),
+               fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+        
+                ),),
+               
                 textColor: Colors.blue[900],
-                    onPressed: () {    
-                      game.send('getallUsers',game.playerID);
+                onPressed: () {
+                  game.send('getallUsers',game.playerID);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => FindPlayer()));
                    
-                    },
-                  ),
+                },
+              ), 
                 ),
                 Container(
                   margin: EdgeInsets.all(25),
                   // ignore: deprecated_member_use
-                  child: FlatButton(
-                    child: Text(
-                      'Find players',
-                      style: TextStyle(fontSize: 17.0),
-                    ),
-                   color: Colors.blue[200],
+                  child:FlatButton(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 55),
+                shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(20)),
+                color:Colors.amberAccent[200],
+                child: Text(
+                    'Find players',
+                  style:GoogleFonts.raleway(
+              textStyle: TextStyle(fontSize: 19.0),
+               fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+        
+                ),),
+               
                 textColor: Colors.blue[900],
-                    onPressed: () {
-                          game.send('request_players_list', game.playerID);
+                onPressed: () {
+                  game.send('request_players_list', game.playerID);
                        Navigator.push(
                           context,
                           MaterialPageRoute(
                               builder: (context) => PlayerDataScreen()));
-                    },
-                  ),
+                   
+                },
+              ), 
                 ),
                 
                 /* Container(

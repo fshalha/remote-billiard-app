@@ -62,7 +62,7 @@ class _FindPlayerState extends State<FindPlayer> {
              style:GoogleFonts.openSans(
                     textStyle:TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 30,
+                    fontSize: 15,
                     color: Colors.blue[200],
                     letterSpacing: 5,
                     
@@ -71,7 +71,9 @@ class _FindPlayerState extends State<FindPlayer> {
           ),
          /* actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],*/
         ),
-        body: ListView.builder(
+        
+        body: 
+        ListView.builder(
           itemCount: allUsers.length,
           itemBuilder: (context, index) {
             return customcard(name: allUsers[index]);

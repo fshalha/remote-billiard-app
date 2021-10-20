@@ -68,7 +68,7 @@ class _BodySignInState extends State<BodySignIn> {
                    margin: EdgeInsets.only(left:40),
                   alignment:Alignment.topLeft,
                 child: Text(
-                  "Signin",
+                  "Sign Up",
                   style:GoogleFonts.openSans(
                     textStyle:TextStyle(
                     fontWeight: FontWeight.bold,
@@ -83,33 +83,97 @@ class _BodySignInState extends State<BodySignIn> {
               SizedBox(
                 height: size.height * 0.01,
               ),
-              RoudedInputField(
-                hintText: "Username",
-                onChanged: (value) {
+                Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: false,
+           onChanged: (value) {
                   username = value;
                 },
-                icon: Icons.person,
-              ),
-              RoudedInputField(
-                hintText: "Email",
-                onChanged: (value) {
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+             hintText: "Username",
+              border:
+                  OutlineInputBorder(
+                        borderSide:BorderSide(color: Colors.blue[200], width: 2.0),
+                    borderRadius: BorderRadius.circular(22.0))),
+        ),
+                
+                ),
+                  SizedBox(
+                  height: size.height * 0.03,
+                ),
+              Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: false,
+           onChanged: (value) {
                   email = value;
                 },
-                icon: Icons.email,
-              ),
-            
-              RoundedPasswordField(
-                onChanged: (value) {
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              hintText: "Email",
+              border:
+                  OutlineInputBorder(
+                        borderSide:BorderSide(color: Colors.blue[200], width: 2.0),
+                    borderRadius: BorderRadius.circular(22.0))),
+        ),
+                
+                ),
+                  SizedBox(
+                  height: size.height * 0.03,
+                ),
+               Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: true,
+          onChanged: (value) {
                   password_1 = value;
                 },
-                text: "Password",
-              ),
-              ConfirmPasswordField(
-                onChanged: (value) {
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              hintText: "password",
+              border:
+                  OutlineInputBorder(
+                  
+                    borderRadius: BorderRadius.circular(22.0),))
+        ),
+        
+                ),
+            
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+            Container(
+                  width:300,
+                child: TextField(
+           style: TextStyle(color: Colors.indigo[900]),
+          obscureText: true,
+         onChanged: (value) {
                   password_2 = value;
                 },
-                text: "Confirm Password",
-              ),
+          decoration: InputDecoration(
+             fillColor: Colors.blue[200], filled: true,
+              contentPadding:   EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+              hintText: "Confirm Password",
+              border:
+                  OutlineInputBorder(
+                  
+                    borderRadius: BorderRadius.circular(22.0),))
+        ),
+        
+                ),
+            
+                SizedBox(
+                  height: size.height * 0.03,
+                ),
+             
               Text(
                 passwordError,
                 style: TextStyle(
@@ -118,10 +182,24 @@ class _BodySignInState extends State<BodySignIn> {
                   color: Colors.red,
                 ),
               ),
-              RoundedButton(
-                text: "Create Account",
-                color: Colors.amber,
-                press: () {
+               FlatButton(
+                       padding: EdgeInsets.symmetric(vertical: 15, horizontal: 110),
+                shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(20)),
+                color:Colors.amberAccent[200],
+                  child: Text(
+                  'SIGN UP',
+                  style:GoogleFonts.raleway(
+                textStyle: TextStyle(fontSize: 17.0),
+               fontWeight: FontWeight.bold,
+                letterSpacing: 3,
+                ),),
+              
+                textColor: Colors.blue[900],
+                onPressed: () {
 
                   isValid = validate_sign_in(
                       username, email, dateofbirth, password_1, password_2);

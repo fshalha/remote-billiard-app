@@ -41,7 +41,7 @@ class WebSocketsNotifications {
       // Open a new WebSocket communication
       _channel = WebSocketChannel.connect(
         //Uri.parse('ws://localhost:3000'),
-         Uri.parse('ws://18.205.119.39:3000'),
+         Uri.parse('ws://3.85.233.16:3000'),
       );
       _channel.stream.listen(_onReceptionOfMessageFromServer);
     } catch (e) {}

@@ -60,23 +60,30 @@ class bconnectdevice extends StatelessWidget {
             Container(
               margin: EdgeInsets.all(25),
               // ignore: deprecated_member_use
-              
-              child: FlatButton(
+               child: FlatButton(
+                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 40),
+                shape: RoundedRectangleBorder(side: BorderSide(
+            color: Colors.amber[700],
+            width:3,
+            style: BorderStyle.solid
+          ), borderRadius: BorderRadius.circular(20)),
+                color:Colors.amberAccent[200],
                 child: Text(
-                  'CONNECT DEVICE',
+                'CONNECT DEVICE',
                   style:GoogleFonts.raleway(
-              textStyle: TextStyle(fontSize: 17.0),
+              textStyle: TextStyle(fontSize: 19.0),
                fontWeight: FontWeight.bold,
                 letterSpacing: 3,
         
                 ),),
-                color: Colors.blue[200],
+               
                 textColor: Colors.blue[900],
                 onPressed: () {
-                  Navigator.push(context,
+                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => BluetoothPage()));
                 },
               ),
+             
             ),
           ]))),
     );

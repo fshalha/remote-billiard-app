@@ -10,7 +10,7 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name="io.flutter.app.FlutterApplication"
-        android:label="real_chat_flutter"
+        android:label="Remote-Billiard"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">
         <activity
